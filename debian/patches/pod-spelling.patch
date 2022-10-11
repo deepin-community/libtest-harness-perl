@@ -1,0 +1,28 @@
+Description: POD spelling
+ Multple → Multiple and arbitarily → arbitrarily
+Author: Damyan Ivanov <dmn@debian.org>
+Forwarded: https://rt.cpan.org/Ticket/Display.html?id=124816
+Bug: https://rt.cpan.org/Ticket/Display.html?id=124816
+
+--- a/bin/prove
++++ b/bin/prove
+@@ -207,7 +207,7 @@ new problems have been introduced.
+ 
+ =item C<all>
+ 
+-Run all tests in normal order. Multple options may be specified, so to
++Run all tests in normal order. Multiple options may be specified, so to
+ run all tests with the failures from last time first:
+ 
+     $ prove -b --state=failed,all,save
+--- a/lib/TAP/Parser/Scheduler.pm
++++ b/lib/TAP/Parser/Scheduler.pm
+@@ -58,7 +58,7 @@ The "C<rules>" data structure is the the
+ to express simple rules like "run all tests in sequence" or "run all tests in
+ parallel except these five tests.". However, the rules structure also supports
+ glob-style pattern matching and recursive definitions, so you can also express
+-arbitarily complicated patterns.
++arbitrarily complicated patterns.
+ 
+ The rule must only have one top level key: either 'par' for "parallel" or 'seq'
+ for "sequence".

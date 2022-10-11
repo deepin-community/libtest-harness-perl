@@ -1,0 +1,41 @@
+Subject: various POD fixes
+Bug: https://rt.cpan.org/Ticket/Display.html?id=88499
+Forwarded: https://rt.cpan.org/Ticket/Display.html?id=88499
+Author: Jonathan Yu <jawnsey@cpan.org>
+Reviewed-by: Nicholas Bamber <nicholas@periapt.co.uk>,
+ gregor herrmann <gregoa@debian.org>
+Last-Update: 2014-09-08
+
+--- a/bin/prove
++++ b/bin/prove
+@@ -78,7 +78,7 @@ Options that take arguments:
+ 
+ =head1 NOTES
+ 
+-=head2 .proverc
++=head2 F<~/.proverc> / F<./.proverc>
+ 
+ If F<~/.proverc> or F<./.proverc> exist they will be read and any
+ options they contain processed before the command line options. Options
+--- a/lib/Test/Harness.pm
++++ b/lib/Test/Harness.pm
+@@ -550,7 +550,7 @@ C<file.tgz>
+ =item C<< fPackage-With-Dashes >>
+ 
+ Set the formatter_class of the harness being run. Since the C<HARNESS_OPTIONS>
+-is seperated by C<:>, we use C<-> instead.
++is separated by C<:>, we use C<-> instead.
+ 
+ =back
+ 
+--- a/lib/TAP/Harness/Env.pm
++++ b/lib/TAP/Harness/Env.pm
+@@ -189,7 +189,7 @@ C<file.tgz>
+ =item C<< fPackage-With-Dashes >>
+ 
+ Set the formatter_class of the harness being run. Since the C<HARNESS_OPTIONS>
+-is seperated by C<:>, we use C<-> instead.
++is separated by C<:>, we use C<-> instead.
+ 
+ =back
+ 
