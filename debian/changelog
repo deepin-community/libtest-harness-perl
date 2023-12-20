@@ -1,3 +1,35 @@
+libtest-harness-perl (3.48-1) unstable; urgency=medium
+
+  * Import upstream version 3.48.
+
+ -- gregor herrmann <gregoa@debian.org>  Fri, 06 Oct 2023 00:30:10 +0200
+
+libtest-harness-perl (3.47-1) unstable; urgency=medium
+
+  * Import upstream version 3.47.
+
+ -- gregor herrmann <gregoa@debian.org>  Wed, 16 Aug 2023 13:35:16 +0200
+
+libtest-harness-perl (3.46-1) unstable; urgency=medium
+
+  * Import upstream version 3.46.
+  * Update years of packaging copyright.
+  * Declare compliance with Debian Policy 4.6.2.
+
+ -- gregor herrmann <gregoa@debian.org>  Fri, 11 Aug 2023 16:22:34 +0200
+
+libtest-harness-perl (3.44-1) unstable; urgency=medium
+
+  * Import upstream version 3.44.
+    Fixes "uninstallable, older than Perl 5.34 bundled version"
+    (Closes: #1005175)
+  * Update patches: drop hunks which are applied upstream.
+  * Update years of packaging copyright.
+  * Declare compliance with Debian Policy 4.6.0.
+  * Bump debhelper-compat to 13.
+
+ -- gregor herrmann <gregoa@debian.org>  Thu, 21 Apr 2022 21:19:50 +0200
+
 libtest-harness-perl (3.42-2) unstable; urgency=medium
 
   [ Laurent Baillet ]

@@ -16,7 +16,7 @@ License: Artistic or GPL-1+
 Files: debian/*
 Copyright: 2006, Gunnar Wolf <gwolf@debian.org>
  2007, 2008, Damyan Ivanov <dmn@debian.org>
- 2007-2020, gregor herrmann <gregoa@debian.org>
+ 2007-2023, gregor herrmann <gregoa@debian.org>
  2008, Roberto C. Sanchez <roberto@debian.org>
  2009, Ryan Niebur <ryan@debian.org>
  2009, Antonio Radici <antonio@dyne.org>

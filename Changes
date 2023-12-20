@@ -1,5 +1,51 @@
 Revision history for Test-Harness
 
+3.48 2023-10-02
+        - Accept TAP version 14
+
+3.47 2023-08-13
+        - Add missing negation in EINTR check
+        - Fix HARNESS_PERL_SWITCHES=-I handling in TAP::Harness::Env
+
+3.46  2023-07-30
+        - Color the "ok"s as well.
+        - Skip symlink tests on msys2
+        - Use use absolute path for executable tests
+        - Space-quote executable if has spaces
+        - Avoid using Errno::EINTR directly for platforms without it
+        - stop calling import on App::Prove plugins
+
+3.45_02  2023-06-01
+        - Avoid using Errno::EINTR directly for platforms without it
+
+3.45_01  28-04-2023
+        - Color the "ok"s as well.
+        - Skip symlink tests on msys2
+        - Use use absolute path for executable tests
+        - Space-quote executable if has spaces
+
+3.44     17-04-2022
+        - Release 3.43_06 as non-dev
+
+3.43_06  11-04-2022
+        - Fix skipping SEGV test
+
+3.43_05  07-04-2022
+        - Fix failing SEGV test on Windows
+
+3.43_04 22-01-2022
+        - Remove ASCII-isms to better work on EBCDIC
+
+3.43_03 30-07-2021
+        - Move timer initialization
+        - Fix YAMLish behaviour with empty values
+        - fix eintr error handling in TAP::Parser::Multiplexer
+        - Parse out signal name & core dump.
+
+3.43_02 25-03-2020
+        - Let the aggregator finish gracefully after bailout
+        - Make prove respect HARNESS_VERBOSE if no verbosity flags are passed
+
 3.42    19-03-2018
         - Enable rulesfile.t to run in core
 
