@@ -53,15 +53,6 @@ sub mabs {
 }
 
 {
-    my @import_log = ();
-    sub test_log_import { push @import_log, [@_] }
-
-    sub get_import_log {
-        my @log = @import_log;
-        @import_log = ();
-        return @log;
-    }
-
     my @plugin_load_log = ();
     sub test_log_plugin_load { push @plugin_load_log, [@_] }
 
@@ -171,8 +162,7 @@ BEGIN {    # START PLAN
             expect => {},
             runlog => [
                 [   '_runtests',
-                    {   verbosity  => 0,
-                        show_count => 1,
+                    {   show_count => 1,
                     },
                     'one', 'two', 'three'
                 ]
@@ -206,7 +196,7 @@ BEGIN {    # START PLAN
             },
             runlog => [
                 [   '_runtests',
-                    { verbosity => 0, show_count => 1 },
+                    { show_count => 1 },
                     'one', 'two',
                     'three'
                 ]
@@ -223,7 +213,6 @@ BEGIN {    # START PLAN
             runlog => [
                 [   '_runtests',
                     {   lib => mabs( [ 'blib/lib', 'blib/arch' ] ),
-                        verbosity  => 0,
                         show_count => 1,
                     },
                     'one', 'two', 'three'
@@ -242,7 +231,6 @@ BEGIN {    # START PLAN
             runlog => [
                 [   '_runtests',
                     {   color      => 1,
-                        verbosity  => 0,
                         show_count => 1,
                     },
                     'one', 'two', 'three'
@@ -261,7 +249,6 @@ BEGIN {    # START PLAN
             runlog => [
                 [   '_runtests',
                     {   directives => 1,
-                        verbosity  => 0,
                         show_count => 1,
                     },
                     'one', 'two', 'three'
@@ -279,7 +266,6 @@ BEGIN {    # START PLAN
             runlog => [
                 [   '_runtests',
                     {   exec       => [1],
-                        verbosity  => 0,
                         show_count => 1,
                     },
                     'one', 'two', 'three'
@@ -297,7 +283,6 @@ BEGIN {    # START PLAN
             runlog => [
                 [   '_runtests',
                     {   failures   => 1,
-                        verbosity  => 0,
                         show_count => 1,
                     },
                     'one', 'two', 'three'
@@ -316,7 +301,6 @@ BEGIN {    # START PLAN
             runlog => [
                 [   '_runtests',
                     {   formatter_class => 'TAP::Harness',
-                        verbosity       => 0,
                         show_count      => 1,
                     },
                     'one', 'two', 'three'
@@ -335,7 +319,6 @@ BEGIN {    # START PLAN
             runlog => [
                 [   '_runtests',
                     {   lib => mabs( [qw( four five six )] ),
-                        verbosity  => 0,
                         show_count => 1,
                     },
                     'one', 'two', 'three'
@@ -353,7 +336,6 @@ BEGIN {    # START PLAN
             runlog => [
                 [   '_runtests',
                     {   lib => mabs( ['lib'] ),
-                        verbosity  => 0,
                         show_count => 1,
                     },
                     'one', 'two', 'three'
@@ -371,7 +353,6 @@ BEGIN {    # START PLAN
             runlog => [
                 [   '_runtests',
                     {   merge      => 1,
-                        verbosity  => 0,
                         show_count => 1,
                     },
                     'one', 'two', 'three'
@@ -389,7 +370,6 @@ BEGIN {    # START PLAN
             runlog => [
                 [   '_runtests',
                     {   errors     => 1,
-                        verbosity  => 0,
                         show_count => 1,
                     },
                     'one', 'two', 'three'
@@ -440,8 +420,7 @@ BEGIN {    # START PLAN
             },
             runlog => [
                 [   '_runtests',
-                    {   verbosity  => 0,
-                        show_count => 1,
+                    {   show_count => 1,
                     },
                     'one', 'two', 'three'
                 ]
@@ -457,8 +436,7 @@ BEGIN {    # START PLAN
             },
             runlog => [
                 [   '_runtests',
-                    {   verbosity  => 0,
-                        show_count => 1,
+                    {   show_count => 1,
                     },
                     'three', 'two', 'one'
                 ]
@@ -475,8 +453,7 @@ BEGIN {    # START PLAN
             },
             runlog => [
                 [   '_runtests',
-                    {   verbosity  => 0,
-                        show_count => 1,
+                    {   show_count => 1,
                     },
                     'xxxone', 'xxxtwo',
                     'xxxthree'
@@ -494,7 +471,6 @@ BEGIN {    # START PLAN
             runlog => [
                 [   '_runtests',
                     {   switches   => ['-T'],
-                        verbosity  => 0,
                         show_count => 1,
                     },
                     'one', 'two', 'three'
@@ -512,7 +488,6 @@ BEGIN {    # START PLAN
             runlog => [
                 [   '_runtests',
                     {   switches   => ['-t'],
-                        verbosity  => 0,
                         show_count => 1,
                     },
                     'one', 'two', 'three'
@@ -547,7 +522,6 @@ BEGIN {    # START PLAN
             runlog => [
                 [   '_runtests',
                     {   switches   => ['-W'],
-                        verbosity  => 0,
                         show_count => 1,
                     },
                     'one', 'two', 'three'
@@ -565,7 +539,6 @@ BEGIN {    # START PLAN
             runlog => [
                 [   '_runtests',
                     {   switches   => ['-w'],
-                        verbosity  => 0,
                         show_count => 1,
                     },
                     'one', 'two', 'three'
@@ -619,7 +592,6 @@ BEGIN {    # START PLAN
             runlog => [
                 [   '_runtests',
                     {   failures   => 1,
-                        verbosity  => 0,
                         show_count => 1,
                     },
                     $dummy_test
@@ -636,7 +608,6 @@ BEGIN {    # START PLAN
             runlog => [
                 [   '_runtests',
                     {   failures   => 1,
-                        verbosity  => 0,
                         show_count => 1,
                     },
                     $dummy_test
@@ -653,7 +624,6 @@ BEGIN {    # START PLAN
             runlog => [
                 [   '_runtests',
                     {   lib => mabs( ['lib'] ),
-                        verbosity  => 0,
                         show_count => 1,
                     },
                     $dummy_test
@@ -670,7 +640,6 @@ BEGIN {    # START PLAN
             runlog => [
                 [   '_runtests',
                     {   lib => mabs( ['lib'] ),
-                        verbosity  => 0,
                         show_count => 1,
                     },
                     $dummy_test
@@ -687,7 +656,6 @@ BEGIN {    # START PLAN
             runlog => [
                 [   '_runtests',
                     {   lib => mabs( [ 'blib/lib', 'blib/arch' ] ),
-                        verbosity  => 0,
                         show_count => 1,
                     },
                     $dummy_test
@@ -704,7 +672,6 @@ BEGIN {    # START PLAN
             runlog => [
                 [   '_runtests',
                     {   lib => mabs( [ 'blib/lib', 'blib/arch' ] ),
-                        verbosity  => 0,
                         show_count => 1,
                     },
                     $dummy_test
@@ -720,8 +687,7 @@ BEGIN {    # START PLAN
             expect => { shuffle => 1 },
             runlog => [
                 [   '_runtests',
-                    {   verbosity  => 0,
-                        show_count => 1,
+                    {   show_count => 1,
                     },
                     "xxx$dummy_test"
                 ]
@@ -736,8 +702,7 @@ BEGIN {    # START PLAN
             expect => { shuffle => 1 },
             runlog => [
                 [   '_runtests',
-                    {   verbosity  => 0,
-                        show_count => 1,
+                    {   show_count => 1,
                     },
                     "xxx$dummy_test"
                 ]
@@ -753,7 +718,6 @@ BEGIN {    # START PLAN
             runlog => [
                 [   '_runtests',
                     {   color      => 1,
-                        verbosity  => 0,
                         show_count => 1,
                     },
                     $dummy_test
@@ -769,8 +733,7 @@ BEGIN {    # START PLAN
             expect => { recurse => 1 },
             runlog => [
                 [   '_runtests',
-                    {   verbosity  => 0,
-                        show_count => 1,
+                    {   show_count => 1,
                     },
                     $dummy_test
                 ]
@@ -785,8 +748,7 @@ BEGIN {    # START PLAN
             expect => { recurse => 1 },
             runlog => [
                 [   '_runtests',
-                    {   verbosity  => 0,
-                        show_count => 1,
+                    {   show_count => 1,
                     },
                     $dummy_test
                 ]
@@ -801,8 +763,7 @@ BEGIN {    # START PLAN
             expect => { backwards => 1 },
             runlog => [
                 [   '_runtests',
-                    {   verbosity  => 0,
-                        show_count => 1,
+                    {   show_count => 1,
                     },
                     reverse @dummy_tests
                 ]
@@ -820,7 +781,6 @@ BEGIN {    # START PLAN
             runlog => [
                 [   '_runtests',
                     {   errors     => 1,
-                        verbosity  => 0,
                         show_count => 1,
                     },
                     $dummy_test
@@ -839,7 +799,6 @@ BEGIN {    # START PLAN
             runlog => [
                 [   '_runtests',
                     {   errors     => 1,
-                        verbosity  => 0,
                         show_count => 1,
                     },
                     $dummy_test
@@ -920,7 +879,6 @@ BEGIN {    # START PLAN
             runlog => [
                 [   '_runtests',
                     {   merge      => 1,
-                        verbosity  => 0,
                         show_count => 1,
                     },
                     $dummy_test
@@ -937,7 +895,6 @@ BEGIN {    # START PLAN
             runlog => [
                 [   '_runtests',
                     {   merge      => 1,
-                        verbosity  => 0,
                         show_count => 1,
                     },
                     $dummy_test
@@ -954,7 +911,6 @@ BEGIN {    # START PLAN
             runlog => [
                 [   '_runtests',
                     {   directives => 1,
-                        verbosity  => 0,
                         show_count => 1,
                     },
                     $dummy_test
@@ -973,7 +929,6 @@ BEGIN {    # START PLAN
             runlog   => [
                 [   '_runtests',
                     {   exec       => [],
-                        verbosity  => 0,
                         show_count => 1,
                     },
                     $dummy_test
@@ -991,7 +946,6 @@ BEGIN {    # START PLAN
             runlog => [
                 [   '_runtests',
                     {   exec       => ['-s'],
-                        verbosity  => 0,
                         show_count => 1,
                     },
                     $dummy_test
@@ -1009,7 +963,6 @@ BEGIN {    # START PLAN
             runlog => [
                 [   '_runtests',
                     {   exec       => [qw(/foo/bar/perl -Ilib)],
-                        verbosity  => 0,
                         show_count => 1,
                     },
                     $dummy_test
@@ -1027,7 +980,6 @@ BEGIN {    # START PLAN
             runlog => [
                 [   '_runtests',
                     {   exec       => [],
-                        verbosity  => 0,
                         show_count => 1,
                     },
                     $dummy_test
@@ -1041,8 +993,7 @@ BEGIN {    # START PLAN
             expect   => { extensions => ['.wango'] },
             runlog   => [
                 [   '_runtests',
-                    {   verbosity  => 0,
-                        show_count => 1,
+                    {   show_count => 1,
                     },
                 ]
             ],
@@ -1054,8 +1005,7 @@ BEGIN {    # START PLAN
             expect   => { extensions => [ '.foo', '.bar' ] },
             runlog   => [
                 [   '_runtests',
-                    {   verbosity  => 0,
-                        show_count => 1,
+                    {   show_count => 1,
                     },
                 ]
             ],
@@ -1075,7 +1025,6 @@ BEGIN {    # START PLAN
                     {   sources => {
                             MyCustom => {},
                         },
-                        verbosity  => 0,
                         show_count => 1,
                     },
                     $dummy_test
@@ -1122,7 +1071,6 @@ BEGIN {    # START PLAN
                                 sep  => 'foo=bar',
                             },
                         },
-                        verbosity  => 0,
                         show_count => 1,
                     },
                     $dummy_test
@@ -1140,15 +1088,14 @@ BEGIN {    # START PLAN
                 plugins => ['Dummy'],
             },
             extra => sub {
-                my @loaded = get_import_log();
-                is_deeply \@loaded, [ ['App::Prove::Plugin::Dummy'] ],
+                my @loaded = get_plugin_load_log();
+                ok @loaded == 1 && $loaded[0][0] eq 'App::Prove::Plugin::Dummy',
                   "Plugin loaded OK";
             },
             plan   => 1,
             runlog => [
                 [   '_runtests',
-                    {   verbosity  => 0,
-                        show_count => 1,
+                    {   show_count => 1,
                     },
                     $dummy_test
                 ]
@@ -1164,19 +1111,17 @@ BEGIN {    # START PLAN
                 plugins => ['Dummy'],
             },
             extra => sub {
-                my @loaded = get_import_log();
-                is_deeply \@loaded,
-                  [ [   'App::Prove::Plugin::Dummy', 'cracking', 'cheese',
-                        'gromit'
-                    ]
-                  ],
+                my @loaded = get_plugin_load_log();
+                ok @loaded == 1 && $loaded[0][0] eq 'App::Prove::Plugin::Dummy',
                   "Plugin loaded OK";
+                my $args = $loaded[0][1]{args};
+                is_deeply $args, [ 'cracking', 'cheese', 'gromit' ],
+                  "Plugin args OK";
             },
             plan   => 1,
             runlog => [
                 [   '_runtests',
-                    {   verbosity  => 0,
-                        show_count => 1,
+                    {   show_count => 1,
                     },
                     $dummy_test
                 ]
@@ -1192,15 +1137,14 @@ BEGIN {    # START PLAN
                 plugins => ['Dummy'],
             },
             extra => sub {
-                my @loaded = get_import_log();
-                is_deeply \@loaded, [ ['App::Prove::Plugin::Dummy'] ],
+                my @loaded = get_plugin_load_log();
+                ok @loaded == 1 && $loaded[0][0] eq 'App::Prove::Plugin::Dummy',
                   "Plugin loaded OK";
             },
             plan   => 1,
             runlog => [
                 [   '_runtests',
-                    {   verbosity  => 0,
-                        show_count => 1,
+                    {   show_count => 1,
                     },
                     $dummy_test
                 ]
@@ -1216,11 +1160,6 @@ BEGIN {    # START PLAN
                 plugins => ['Dummy2'],
             },
             extra => sub {
-                my @import = get_import_log();
-                is_deeply \@import,
-                  [ [ 'App::Prove::Plugin::Dummy2', 'fou', 'du', 'fafa' ] ],
-                  "Plugin loaded OK";
-
                 my @loaded = get_plugin_load_log();
                 is( scalar @loaded, 1, 'Plugin->load called OK' );
                 my ( $plugin_class, $args ) = @{ shift @loaded };
@@ -1239,8 +1178,7 @@ BEGIN {    # START PLAN
             plan   => 5,
             runlog => [
                 [   '_runtests',
-                    {   verbosity  => 0,
-                        show_count => 1,
+                    {   show_count => 1,
                     },
                     $dummy_test
                 ]
@@ -1256,15 +1194,14 @@ BEGIN {    # START PLAN
                 plugins => ['Dummy'],
             },
             extra => sub {
-                my @loaded = get_import_log();
-                is_deeply \@loaded, [ ['App::Prove::Plugin::Dummy'] ],
+                my @loaded = get_plugin_load_log();
+                ok @loaded == 1 && $loaded[0][0] eq 'App::Prove::Plugin::Dummy',
                   "Plugin loaded OK";
             },
             plan   => 1,
             runlog => [
                 [   '_runtests',
-                    {   verbosity  => 0,
-                        show_count => 1,
+                    {   show_count => 1,
                     },
                     $dummy_test
                 ]

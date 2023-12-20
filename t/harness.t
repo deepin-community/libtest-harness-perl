@@ -10,6 +10,9 @@ use warnings;
 use Test::More;
 use IO::c55Capture;
 
+use Config;
+use POSIX;
+
 use TAP::Harness;
 
 # This is done to prevent the colors environment variables from
@@ -24,7 +27,7 @@ my $HARNESS = 'TAP::Harness';
 my $source_tests = 't/source_tests';
 my $sample_tests = 't/sample-tests';
 
-plan tests => 132;
+plan tests => 133;
 
 # note that this test will always pass when run through 'prove'
 ok $ENV{HARNESS_ACTIVE},  'HARNESS_ACTIVE env variable should be set';
@@ -122,7 +125,9 @@ for my $test_args ( get_arg_sets() ) {
         '[[reset]]',
         'ok 1 - this is a test',
         '[[reset]]',
+        '[[green]]',
         'ok',
+        '[[reset]]',
         '[[green]]',
         'All tests successful.',
         '[[reset]]',
@@ -155,7 +160,9 @@ for my $test_args ( get_arg_sets() ) {
         '[[reset]]',
         'ok 1 - this is a test',
         '[[reset]]',
+        '[[green]]',
         'ok',
+        '[[reset]]',
         '[[green]]',
         'All tests successful.',
         '[[reset]]',
@@ -190,13 +197,17 @@ for my $test_args ( get_arg_sets() ) {
         '[[reset]]',
         'ok 1 - this is a test',
         '[[reset]]',
+        '[[green]]',
         'ok',
+        '[[reset]]',
         'My Nice Test Again ..',
         '1..1',
         '[[reset]]',
         'ok 1 - this is a test',
         '[[reset]]',
+        '[[green]]',
         'ok',
+        '[[reset]]',
         '[[green]]',
         'All tests successful.',
         '[[reset]]',
@@ -520,6 +531,21 @@ for my $test_args ( get_arg_sets() ) {
       '... and the status line should be correct';
     $expected_summary = qr/^Files=1, Tests=2, +\d+ wallclock secs/;
     is_deeply \@output, \@expected, '... and the output should be correct';
+
+    SKIP: {
+        skip "No SIGSEGV on $^O", 1 if $^O eq 'MSWin32' or $Config::Config{'sig_name'} !~ m/SEGV/;
+
+        # some people -Dcc="somecc -fsanitize=..." or -Doptimize="-fsanitize=..."
+        skip "ASAN doesn't passthrough SEGV", 1
+          if "$Config{cc} $Config{ccflags} $Config{optimize}" =~ /-fsanitize\b/;
+
+        @output = ();
+        _runtests( $harness_failures, "$sample_tests/segfault" );
+
+        my $out_str = join q<>, @output;
+
+        like( $out_str, qr<SEGV>, 'SIGSEGV is parsed out' );
+    }
 
     #XXXX
 }
